@@ -14,8 +14,8 @@ function App() {
     <div className="App">
       
       <div className="upper ">
-        <BalanceExpenses costValue={balance} buttonName="Add Income" buttonColor="#B5DC52" />
-        <BalanceExpenses costValue={expenses} buttonName="Add Expense" buttonColor="#FF4747" />
+        <BalanceExpenses title="Wallet Balance"costValue={balance} buttonName="Add Income" buttonColor="#B5DC52" wallet={true}/>
+        <BalanceExpenses title="Expenses" costValue={expenses} buttonName="Add Expense" buttonColor="#FF4747" wallet={false} />
         <BarChart/>
       </div>
       
