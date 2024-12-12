@@ -5,6 +5,8 @@ import Modal from "@material-ui/core/Modal";
 function BalanceExpenses(props) {
 
   const [open, setOpen] = React.useState(false);
+ 
+  const [balance, setBalance] = React.useState(0);
 
   const handleClose = () => {
       setOpen(false);
@@ -14,15 +16,19 @@ function BalanceExpenses(props) {
       setOpen(true);
   };
 
-  function handleClick(){
-    console.log("clicked");
-  }
+  const addBalance = (e) => {
+    e.preventDefault();
+    const total = Number(props.balance) + Number(balance);
 
+    props.costValue(total);
+    
+
+  };
   
   return (
-    //console.log(props.costValue),
+    
     <div className={styles.wallet}>
-      <h2>{props.title}: {props.costValue}</h2>
+      <h2>{props.title}: {props.balance}</h2>
       <button style={{ backgroundColor: props.buttonColor, borderRadius: "30%", cursor: 'pointer' }} onClick={() => handleOpen()}>{props.buttonName}</button>
       
       {props.wallet?<Modal
@@ -43,11 +49,11 @@ function BalanceExpenses(props) {
                 <>
           <h2>Add Balance</h2>
           <div className={styles.input}>
-            <input type="text" placeholder="Income Amount" className={ styles.input} />
-            <div className={styles.input}>
-            <button>Add Balance</button>
+            <input type="text" placeholder="Income Amount" value={balance} onChange={(e)=>setBalance(e.target.value)} className={ styles.input} />
+            
+            <button onClick={(e)=>addBalance(e)}>Add Balance</button>
             <button onClick={handleClose}>Cancel</button>
-          </div>
+          
           </div>
 
           
